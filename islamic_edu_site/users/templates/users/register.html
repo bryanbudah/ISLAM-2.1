@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="min-h-screen flex items-center justify-center bg-gray-50 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI2ZmZiI+PC9yZWN0PjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI2UwZTBlMCI+PC9yZWN0PjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSI+PC9yZWN0Pjwvc3ZnPg==')]">
+  <div class="max-w-md mx-auto p-8 bg-white bg-opacity-90 rounded-lg shadow-lg mt-10 border-2 border-gold-500">
+    <!-- Islamic decorative elements -->
+    <div class="text-center mb-6">
+      <h1 class="text-3xl font-bold text-islamic-green mb-2">IlmHub</h1>
+      <p class="text-gold-600 italic">"Seek knowledge from the cradle to the grave"</p>
+    </div>
+
+    <h2 class="text-2xl font-bold text-islamic-green mb-4 text-center">Create Account</h2>
+
+    <form method="POST" class="space-y-4">
+      {% csrf_token %}
+      
+      <!-- Improved form fields with Islamic styling -->
+      {% for field in form %}
+        <div>
+          <label class="block text-sm font-medium text-islamic-green mb-1">
+            {{ field.label_tag }}
+          </label>
+          {{ field }}
+          {% if field.errors %}
+            <p class="mt-1 text-sm text-red-600">{{ field.errors }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+
+      <button type="submit" class="w-full bg-islamic-green text-white py-3 px-4 rounded-lg hover:bg-islamic-green-dark transition duration-300 shadow-md flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+        </svg>
+        Register
+      </button>
+    </form>
+
+    <p class="mt-6 text-center text-sm text-gray-700">
+      Already have an account?
+      <a href="{% url 'login' %}" class="text-islamic-green hover:underline font-medium">Sign in here</a>
+    </p>
+
+    <!-- Islamic decorative footer -->
+    <div class="mt-8 text-center text-xs text-gray-500">
+      <p>"And say: My Lord, increase me in knowledge" (Quran 20:114)</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Custom Islamic color palette */
+  .bg-islamic-green { background-color: #0a5e2a; }
+  .hover\:bg-islamic-green-dark:hover { background-color: #084a22; }
+  .text-islamic-green { color: #0a5e2a; }
+  .border-gold-500 { border-color: #d4af37; }
+  .text-gold-600 { color: #d4af37; }
+
+  /* Form input styling */
+  
+  
+</style>
+{% endblock %}

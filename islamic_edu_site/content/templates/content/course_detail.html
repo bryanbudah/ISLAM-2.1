@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="course-detail">
+    <h1>{{ course.title }}</h1>
+    
+    <div class="meta">
+        <span>Category: {{ course.category.name }}</span> |
+        <span>Published: {{ course.created_at|date:"F j, Y" }}</span>
+    </div>
+    
+    {% if course.image %}
+    <img src="{{ course.image.url }}" alt="{{ course.title }}" class="course-image">
+    {% endif %}
+    
+    <div class="description">
+        <h2>About This Course</h2>
+        {{ course.description|linebreaks }}
+    </div>
+    
+    <div class="content">
+        {{ course.content|linebreaks }}
+    </div>
+    
+    {% if course.video_url %}
+    <div class="video-container">
+        <iframe src="{{ course.video_url }}" allowfullscreen></iframe>
+    </div>
+    {% endif %}
+    
+    <!-- Enrollment button or progress tracker -->
+    <div class="enrollment-section">
+        <button class="enroll-btn">Enroll in Course</button>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="search-container">
+    <div class="search-header">
+        <h1 class="arabic-title">Search Results</h1>
+        <form method="get" action="{% url 'search' %}" class="search-form">
+            <input type="text" name="q" value="{{ query }}" placeholder="Search for articles, courses, or events..." class="search-input">
+            <button type="submit" class="search-button">
+                <i class="fas fa-search"></i> Search
+            </button>
+        </form>
+    </div>
+
+    {% if query %}
+    <div class="search-results">
+        <p class="results-count">Found {{ results|length }} results for "{{ query }}"</p>
+        
+        {% if results %}
+        <div class="results-grid">
+            {% for item in results %}
+            <div class="result-card">
+                {% if item.image %}
+                <img src="{{ item.image.url }}" alt="{{ item.title }}" class="result-image">
+                {% elif item|model_name == 'article' %}
+                <img src="{% static 'images/default-article.jpg' %}" alt="Article" class="result-image">
+                {% elif item|model_name == 'course' %}
+                <img src="{% static 'images/default-course.jpg' %}" alt="Course" class="result-image">
+                {% else %}
+                <img src="{% static 'images/default-event.jpg' %}" alt="Event" class="result-image">
+                {% endif %}
+                
+                <div class="result-details">
+                    <h3><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></h3>
+                    <p class="result-type">{{ item|model_name|capfirst }}</p>
+                    <p class="result-excerpt">
+                        {% if item|model_name == 'article' %}
+                        {{ item.content|truncatewords:20 }}
+                        {% elif item|model_name == 'course' %}
+                        {{ item.description|truncatewords:20 }}
+                        {% else %}
+                        {{ item.description|truncatewords:20 }}
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="no-results">
+            <img src="{% static 'images/no-results.png' %}" alt="No results found">
+            <p>No results found for "{{ query }}"</p>
+            <a href="{% url 'home' %}" class="home-link">Return to Home</a>
+        </div>
+        {% endif %}
+    </div>
+    {% else %}
+    <div class="search-prompt">
+        <img src="{% static 'images/search-prompt.png' %}" alt="Search prompt">
+        <p>Enter a search term above to find articles, courses, and events</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,157 @@
+
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic Courses | IlmHub</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts - Amiri for Arabic text -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Amiri', serif;
+            background-color: #f8fafc; /* light gray background */
+        }
+        .islamic-pattern-bg {
+            background-image: url('{% static "images/islamic-pattern.png" %}');
+            background-size: 300px;
+            opacity: 0.03;
+        }
+    </style>
+</head>
+
+<body class="dark:bg-gray-900 dark:text-gray-100">
+    <!-- Header with Islamic pattern -->
+    <header class="bg-green-800 text-white py-16 relative overflow-hidden">
+        <div class="absolute inset-0 islamic-pattern-bg"></div>
+        <div class="container mx-auto px-4 text-center relative">
+            <h1 class="text-4xl font-bold mb-4">Islamic Knowledge Courses</h1>
+            <p class="text-xl max-w-2xl mx-auto">
+                "Seeking knowledge is obligatory upon every Muslim"
+                <br><span class="text-sm">- Ibn Majah 224</span>
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- Course Filter Section -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-12">
+            <div class="flex flex-col md:flex-row gap-4">
+                <input type="text" placeholder="Search courses..." 
+                       class="flex-grow px-4 py-3 border rounded-lg focus:ring-2 focus:ring-green-500">
+                <select class="px-4 py-3 border rounded-lg dark:bg-gray-700">
+                    <option>All Categories</option>
+                    <option>Quran Studies</option>
+                    <option>Hadith</option>
+                    <option>Fiqh</option>
+                    <option>Arabic</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Course Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for course in courses %}
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-transform hover:-translate-y-1">
+                <!-- Course Image -->
+                <div class="h-48 bg-green-700 relative overflow-hidden flex items-center justify-center">
+                    {% if course.image %}
+                        <img src="{{ course.image.url }}" alt="{{ course.title }}" class="w-full h-full object-cover">
+                    {% else %}
+                        <span class="text-white text-6xl opacity-20">﷽</span>
+                    {% endif %}
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent h-20"></div>
+                    <span class="absolute bottom-4 left-4 bg-green-600 text-white px-3 py-1 rounded-full text-xs">
+                        {{ course.get_level_display }}
+                    </span>
+                </div>
+
+                <!-- Course Details -->
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-green-800 dark:text-green-400 mb-2">
+                        {{ course.title }}
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                        {{ course.short_description|truncatewords:20 }}
+                    </p>
+                    
+                    <div class="flex items-center justify-between mt-4">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center mr-2">
+                                <span class="text-xs">👳</span>
+                            </div>
+                            <span class="text-sm">{{ course.instructor }}</span>
+                        </div>
+                        <a href="{% url 'course_detail' course.slug %}" 
+                           class="text-green-600 dark:text-green-400 hover:underline text-sm font-medium">
+                            Learn More →
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-full text-center py-12">
+                <div class="inline-block p-8 bg-white dark:bg-gray-800 rounded-xl shadow">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <h3 class="text-lg font-medium text-gray-700 dark:text-gray-300">No courses available</h3>
+                    <p class="text-gray-500 dark:text-gray-400 mt-1">New courses coming soon</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if is_paginated %}
+        <div class="mt-12 flex justify-center">
+            <nav class="flex items-center space-x-2">
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}" class="px-4 py-2 border rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+                        Previous
+                    </a>
+                {% endif %}
+                
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <span class="px-4 py-2 bg-green-600 text-white rounded-lg">
+                            {{ num }}
+                        </span>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <a href="?page={{ num }}" class="px-4 py-2 border rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+                            {{ num }}
+                        </a>
+                    {% endif %}
+                {% endfor %}
+                
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="px-4 py-2 border rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+                        Next
+                    </a>
+                {% endif %}
+            </nav>
+        </div>
+        {% endif %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-green-900 text-white py-8 text-center">
+        <div class="container mx-auto px-4">
+            <p>© {% now "Y" %} IlmHub - Islamic Education Platform</p>
+            <p class="text-sm mt-2 text-green-200">
+                "The ink of the scholar is more sacred than the blood of the martyr"
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="islamic-container">
+    <div class="islamic-header">
+        <h1 class="arabic-title">{{ category.name }}</h1>
+        {% if category.icon %}
+        <i class="{{ category.icon }} fa-2x"></i>
+        {% endif %}
+    </div>
+
+    <div class="islamic-content-section">
+        <h2 class="section-title arabic-subtitle">Articles</h2>
+        <div class="islamic-card-grid">
+            {% for article in articles %}
+            <div class="islamic-card">
+                <a href="{{ article.get_absolute_url }}">
+                    {% if article.image %}
+                    <img src="{{ article.image.url }}" alt="{{ article.title }}" class="card-image">
+                    {% else %}
+                    <img src="{% static 'images/default-article.jpg' %}" alt="Default Islamic article image" class="card-image">
+                    {% endif %}
+                    <h3>{{ article.title }}</h3>
+                    <p class="meta">By {{ article.author }} • {{ article.created_at|date:"M d, Y" }}</p>
+                </a>
+            </div>
+            {% empty %}
+            <p class="no-content">No articles in this category yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="islamic-content-section">
+        <h2 class="section-title arabic-subtitle">Courses</h2>
+        <div class="islamic-card-grid">
+            {% for course in courses %}
+            <div class="islamic-card">
+                <a href="{{ course.get_absolute_url }}">
+                    {% if course.image %}
+                    <img src="{{ course.image.url }}" alt="{{ course.title }}" class="card-image">
+                    {% else %}
+                    <img src="{% static 'images/default-course.jpg' %}" alt="Default Islamic course image" class="card-image">
+                    {% endif %}
+                    <h3>{{ course.title }}</h3>
+                    <p class="meta">{{ course.created_at|date:"M d, Y" }}</p>
+                </a>
+            </div>
+            {% empty %}
+            <p class="no-content">No courses in this category yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="islamic-content-section">
+        <h2 class="section-title arabic-subtitle">Events</h2>
+        <div class="islamic-card-grid">
+            {% for event in events %}
+            <div class="islamic-card">
+                <a href="{{ event.get_absolute_url }}">
+                    {% if event.image %}
+                    <img src="{{ event.image.url }}" alt="{{ event.title }}" class="card-image">
+                    {% else %}
+                    <img src="{% static 'images/default-event.jpg' %}" alt="Default Islamic event image" class="card-image">
+                    {% endif %}
+                    <h3>{{ event.title }}</h3>
+                    <p class="meta">{{ event.event_date|date:"M d, Y" }} • {{ event.location }}</p>
+                </a>
+            </div>
+            {% empty %}
+            <p class="no-content">No upcoming events in this category.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

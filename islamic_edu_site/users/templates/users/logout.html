@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md mt-10 text-center">
+  <h2 class="text-2xl font-bold text-green-700 mb-4">Logged Out</h2>
+  <p class="mb-6">You have been successfully logged out.</p>
+  
+  <div class="border-t pt-4">
+    <a href="{% url 'login' %}" class="text-green-700 hover:underline">Log in again</a>
+    <span class="mx-2">•</span>
+    <a href="{% url 'home' %}" class="text-green-700 hover:underline">Return home</a>
+  </div>
+</div>
+{% endblock %}

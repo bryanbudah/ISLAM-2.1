@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="event-detail">
+    <h1>{{ event.title }}</h1>
+    
+    <div class="meta">
+        <span class="date">{{ event.event_date|date:"F j, Y" }}</span> |
+        <span class="time">{{ event.event_date|time }}</span> |
+        <span class="location">{{ event.location }}</span>
+    </div>
+    
+    {% if event.image %}
+    <img src="{{ event.image.url }}" alt="{{ event.title }}" class="event-image">
+    {% endif %}
+    
+    <div class="description">
+        {{ event.description|linebreaks }}
+    </div>
+    
+    <div class="content">
+        {{ event.content|linebreaks }}
+    </div>
+    
+    <!-- Registration section -->
+    <div class="registration">
+        <h3>Event Registration</h3>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="register-btn">Register for Event</button>
+        </form>
+    </div>
+    
+    <!-- Map embed -->
+    <div class="map-container">
+        <iframe src="https://maps.google.com/maps?q={{ event.location|urlencode }}&output=embed"></iframe>
+    </div>
+</div>
+{% endblock %}
