@@ -25,6 +25,8 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "change-me-in-production")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+APPEND_SLASH = True
+
 ALLOWED_HOSTS = [
   '127.0.0.1',       # Localhost
     'localhost',       # Local testing
