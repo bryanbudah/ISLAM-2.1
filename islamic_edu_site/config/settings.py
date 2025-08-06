@@ -26,6 +26,7 @@ ALLOWED_HOSTS = [
     'www.myislamicsite.com',
     'yourproject.vercel.app',
     '.vercel.app'
+    '.now.sh'
 ]
 
 # Installed apps
