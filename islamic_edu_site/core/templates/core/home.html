@@ -2,308 +2,522 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>IlmHub | Home</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- TailwindCSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Google Fonts: Poppins -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Dark Mode Toggle -->
-  <script defer>
-    document.addEventListener('DOMContentLoaded', () => {
-      const html = document.documentElement;
-      const toggleBtn = document.getElementById('dark-toggle');
-
-      if (localStorage.getItem('theme') === 'dark') {
-        html.classList.add('dark');
-      }
-
-      toggleBtn.addEventListener('click', () => {
-        html.classList.toggle('dark');
-        localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
-      });
-    });
-  </script>
-
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-    }
-    .hero-section {
-      background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>IlmHub | Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Dark Mode Toggle -->
+    <script defer>
+        document.addEventListener('DOMContentLoaded', () => {
+            const html = document.documentElement;
+            const toggleBtn = document.getElementById('dark-toggle');
+            if (localStorage.getItem('theme') === 'dark') {
+                html.classList.add('dark');
+            }
+            toggleBtn.addEventListener('click', () => {
+                html.classList.toggle('dark');
+                localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+            });
+        });
+    </script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1596726895343-5b2f2b1b9fc8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .featured-courses {
+            background: url('file:///C:/Users/ADMIN/Downloads/sam-riz-ceNCWYqL8DY-unsplash%20(1).jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .knowledge-base {
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+                        url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .dark .knowledge-base {
+            background: linear-gradient(rgba(26, 32, 44, 0.9), rgba(26, 32, 44, 0.9)), 
+                        url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .events-section {
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+                        url('https://images.unsplash.com/photo-1570641963303-92ce4845ed4c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .dark .events-section {
+            background: linear-gradient(rgba(26, 32, 44, 0.9), rgba(26, 32, 44, 0.9)), 
+                        url('https://images.unsplash.com/photo-1570641963303-92ce4845ed4c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .cta-section {
+            background: linear-gradient(rgba(76, 175, 80, 0.85), rgba(46, 125, 50, 0.85)), 
+                        url('https://images.unsplash.com/photo-1546412414-e1885e51cefe?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .footer-section {
+            background: url('https://images.unsplash.com/photo-1526285849707-4a7333142e84?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .course-card {
+            background: rgba(255, 255, 255, 0.95);
+            transition: all 0.3s ease;
+        }
+        .dark .course-card {
+            background: rgba(26, 32, 44, 0.95);
+        }
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .dark-mode-toggle {
+            display: flex;
+            align-items: center;
+            margin-left: 1rem;
+            cursor: pointer;
+        }
+        .toggle-slot {
+            position: relative;
+            height: 1.5rem;
+            width: 3rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 9999px;
+            background-color: white;
+            transition: background-color 250ms, border-color 250ms;
+        }
+        .dark .toggle-slot {
+            background-color: #374151;
+            border-color: #4B5563;
+        }
+        .toggle-button {
+            transform: translateX(0);
+            position: absolute;
+            top: 0.15rem;
+            left: 0.15rem;
+            height: 1rem;
+            width: 1rem;
+            border-radius: 50%;
+            background-color: #FFCF4F;
+            box-shadow: inset 0 0 0 0.25rem #FFBB38;
+            transition: background-color 250ms, border-color 250ms, transform 500ms cubic-bezier(.26,2,.46,.71);
+        }
+        .dark .toggle-button {
+            background-color: #485367;
+            box-shadow: inset 0 0 0 0.25rem white;
+            transform: translateX(1.5rem);
+        }
+        .sun-icon, .moon-icon {
+            position: absolute;
+            height: 1rem;
+            width: 1rem;
+            color: #FFBB38;
+        }
+        .sun-icon {
+            top: 0.15rem;
+            left: 0.15rem;
+            opacity: 1;
+        }
+        .dark .sun-icon {
+            opacity: 0;
+            color: #FFBB38;
+        }
+        .moon-icon {
+            top: 0.15rem;
+            left: 1.7rem;
+            opacity: 0;
+        }
+        .dark .moon-icon {
+            opacity: 1;
+        }
+        .content-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        .dark .content-card {
+            background: rgba(26, 32, 44, 0.95);
+        }
+    </style>
 </head>
-
-<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-all">
-
-  <!-- Navbar -->
-  <nav class="bg-white dark:bg-gray-800 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="flex justify-between items-center py-4">
-        <!-- Logo -->
-        <a href="{% url 'home' %}" class="text-2xl font-bold text-green-600 dark:text-green-400 flex items-center">
-          IlmHub
-        </a>
-
-        <!-- Desktop Menu -->
-        <div class="hidden md:flex items-center space-x-8">
-          <a href="{% url 'course-list' %}" class="text-gray-700 dark:text-gray-300 hover:text-green-600">COURSES</a>
-          <a href="{% url 'article_list' %}" class="text-gray-700 dark:text-gray-300 hover:text-green-600">BEGINNERS</a>
-          <a href="{% url 'event-list' %}" class="text-gray-700 dark:text-gray-300 hover:text-green-600">COMMUNITY</a>
-          
-          {% if user.is_authenticated %}
-            {% if user.is_staff or user.is_superuser %}
-              <a href="{% url 'admin:index' %}" 
-                 class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">
-                Admin
-              </a>
-            {% else %}
-              <a href="{% url 'dashboard' %}" class="text-gray-700 dark:text-gray-300 hover:text-green-600">Dashboard</a>
-            {% endif %}
-            <a href="{% url 'logout' %}" class="text-gray-700 dark:text-gray-300 hover:text-green-600">Logout</a>
-          {% else %}
-            <a href="{% url 'login' %}" class="text-gray-700 dark:text-gray-300 hover:text-green-600">Login</a>
-          {% endif %}
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-200">
+    <!-- Navbar -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <a href="{% url 'home' %}" class="text-2xl font-bold text-green-600 dark:text-green-400 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                    IlmHub
+                </a>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="{% url 'course-list' %}" class="text-gray-700 dark:text-gray-300 hover:text-green-600">COURSES</a>
+                    <a href="{% url 'article_list' %}" class="text-gray-700 dark:text-gray-300 hover:text-green-600">BEGINNERS</a>
+                    <a href="{% url 'event-list' %}" class="text-gray-700 dark:text-gray-300 hover:text-green-600">COMMUNITY</a>
+                    {% if user.is_authenticated %}
+                        {% if user.is_staff or user.is_superuser %}
+                            <a href="{% url 'admin:index' %}" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"> Admin </a>
+                        {% else %}
+                            <a href="{% url 'dashboard' %}" class="text-gray-700 dark:text-gray-300 hover:text-green-600">Dashboard</a>
+                        {% endif %}
+                        <a href="{% url 'logout' %}" class="text-gray-700 dark:text-gray-300 hover:text-green-600">Logout</a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="text-gray-700 dark:text-gray-300 hover:text-green-600">Login</a>
+                    {% endif %}
+                    
+                    <!-- Dark Mode Toggle -->
+                    <div class="dark-mode-toggle" id="dark-toggle">
+                        <div class="toggle-slot">
+                            <div class="toggle-button"></div>
+                            <div class="sun-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 01-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div class="moon-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <!-- Dark Mode Toggle for Mobile -->
+                    <div class="dark-mode-toggle mr-4" id="dark-toggle-mobile">
+                        <div class="toggle-slot">
+                            <div class="toggle-button"></div>
+                            <div class="sun-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 01-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div class="moon-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="mobile-menu-btn" class="text-gray-700 dark:text-gray-300 focus:outline-none">
+                        ☰
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden flex-col space-y-4 pb-4 md:hidden">
+                <a href="{% url 'course-list' %}" class="text-gray-700 dark:text-gray-300">COURSES</a>
+                <a href="{% url 'article_list' %}" class="text-gray-700 dark:text-gray-300">BEGINNERS</a>
+                <a href="{% url 'event-list' %}" class="text-gray-700 dark:text-gray-300">COMMUNITY</a>
+                {% if user.is_authenticated %}
+                    {% if user.is_staff or user.is_superuser %}
+                        <a href="{% url 'admin:index' %}" class="bg-green-600 text-white px-4 py-2 rounded"> Admin </a>
+                    {% else %}
+                        <a href="{% url 'dashboard' %}" class="text-gray-700 dark:text-gray-300">Dashboard</a>
+                    {% endif %}
+                    <a href="{% url 'logout' %}" class="text-gray-700 dark:text-gray-300">Logout</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="text-gray-700 dark:text-gray-300">Login</a>
+                {% endif %}
+            </div>
         </div>
+    </nav>
 
-        <!-- Mobile Menu Button -->
-        <div class="md:hidden">
-          <button id="mobile-menu-btn" class="text-gray-700 dark:text-gray-300 focus:outline-none">
-            ☰
-          </button>
-        </div>
-      </div>
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
-      <!-- Mobile Menu -->
-      <div id="mobile-menu" class="hidden flex-col space-y-4 pb-4 md:hidden">
-        <a href="{% url 'course-list' %}" class="text-gray-700 dark:text-gray-300">COURSES</a>
-        <a href="{% url 'article_list' %}" class="text-gray-700 dark:text-gray-300">BEGINNERS</a>
-        <a href="{% url 'event-list' %}" class="text-gray-700 dark:text-gray-300">COMMUNITY</a>
-        {% if user.is_authenticated %}
-          {% if user.is_staff or user.is_superuser %}
-            <a href="{% url 'admin:index' %}" 
-               class="bg-green-600 text-white px-4 py-2 rounded">
-              Admin
-            </a>
-          {% else %}
-            <a href="{% url 'dashboard' %}" class="text-gray-700 dark:text-gray-300">Dashboard</a>
-          {% endif %}
-          <a href="{% url 'logout' %}" class="text-gray-700 dark:text-gray-300">Logout</a>
-        {% else %}
-          <a href="{% url 'login' %}" class="text-gray-700 dark:text-gray-300">Login</a>
-        {% endif %}
-      </div>
-    </div>
-  </nav>
+        // Dark mode toggle functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const html = document.documentElement;
+            const toggleBtns = document.querySelectorAll('.dark-mode-toggle');
+            
+            // Check for saved theme preference or respect OS preference
+            if (localStorage.getItem('theme') === 'dark' || 
+                (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                html.classList.add('dark');
+            }
+            
+            // Add event listeners to all toggle buttons
+            toggleBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    html.classList.toggle('dark');
+                    localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+                });
+            });
+        });
+    </script>
 
-  <script>
-    // Mobile menu toggle
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    mobileMenuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
-  </script>
+    <!-- Hero Section -->
+    <section class="hero-section text-white py-16 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-3xl md:text-4xl font-bold mb-6"> Join our live webinars and workshops </h1>
+            <p class="text-xl mb-8"> Ready to dive in?<br> Start your learning journey today. </p>
+            <div class="content-card p-6 rounded-lg shadow-lg max-w-2xl mx-auto">
+                <p class="text-gray-800 dark:text-gray-200 mb-4"> Join thousands of students who are advancing their knowledge with our courses. </p>
+                <a href="#" class="inline-block bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-8 rounded-full transition"> Sign up for free </a>
+            </div>
+        </div>
+    </section>
 
-  <!-- Hero Section -->
-  <section class="hero-section text-white py-16 px-4">
-    <div class="max-w-4xl mx-auto text-center">
-      <h1 class="text-3xl md:text-4xl font-bold mb-6">
-        Join our live webinars and workshops
-      </h1>
-      <p class="text-xl mb-8">
-        Ready to dive in?<br>
-        Start your learning journey today.
-      </p>
-      <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-2xl mx-auto">
-        <p class="text-gray-800 dark:text-gray-200 mb-4">
-          Join thousands of students who are advancing their careers with our courses.
-        </p>
-        <a href="#" class="inline-block bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-8 rounded-full transition">
-          Sign up for free
-        </a>
-      </div>
-    </div>
-  </section>
+    <!-- Featured Learning Paths -->
+    <section class="featured-courses py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-2xl font-bold text-center mb-2 text-white">Featured Learning Paths</h2>
+            <p class="text-gray-200 text-center mb-12"> Our most popular courses to help you get started </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Course Card 1 -->
+                <div class="course-card p-6 rounded-lg shadow hover:shadow-lg transition">
+                    <div class="h-48 bg-green-100 rounded mb-4 flex items-center justify-center overflow-hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Quranic Arabic</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4"> Learn to understand the Quran in its original language. </p>
+                    <a href="#" class="text-green-600 dark:text-green-400 font-medium hover:underline">View Course</a>
+                </div>
+                <!-- Course Card 2 -->
+                <div class="course-card p-6 rounded-lg shadow hover:shadow-lg transition">
+                    <div class="h-48 bg-green-100 rounded mb-4 flex items-center justify-center overflow-hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Fiqh of Worship</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4"> Master the rulings of purification, prayer, fasting and more. </p>
+                    <a href="#" class="text-green-600 dark:text-green-400 font-medium hover:underline">View Course</a>
+                </div>
+                <!-- Course Card 3 -->
+                <div class="course-card p-6 rounded-lg shadow hover:shadow-lg transition">
+                    <div class="h-48 bg-green-100 rounded mb-4 flex items-center justify-center overflow-hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Seerah of the Prophet</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4"> Study the life and teachings of Prophet Muhammad (PBUH). </p>
+                    <a href="#" class="text-green-600 dark:text-green-400 font-medium hover:underline">View Course</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Featured Learning Paths -->
-  <section class="py-16 px-4 bg-white dark:bg-gray-800">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-2xl font-bold text-center mb-2">Featured Learning Paths</h2>
-      <p class="text-gray-600 dark:text-gray-300 text-center mb-12">
-        Our most popular courses to help you get started
-      </p>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Course Card 1 -->
-        <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow hover:shadow-lg transition">
-          <div class="h-48 bg-gray-200 dark:bg-gray-600 rounded mb-4 flex items-center justify-center">
-            <span class="text-gray-500 dark:text-gray-300">Course Image</span>
-          </div>
-          <h3 class="text-xl font-semibold mb-2">Quranic Arabic</h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-4">
-            Learn to understand the Quran in its original language.
-          </p>
-          <a href="#" class="text-green-600 dark:text-green-400 font-medium hover:underline">View Course</a>
+    <!-- Knowledge Base & Events -->
+    <section class="py-16 px-4">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+            <!-- Knowledge Base -->
+            <div class="knowledge-base p-8 rounded-lg">
+                <h2 class="text-2xl font-bold mb-2">KNOWLEDGE BASE</h2>
+                <p class="text-gray-600 dark:text-gray-300 mb-6"> Insights and tutorials from our expert instructors </p>
+                <div class="space-y-6">
+                    <div class="content-card p-6 rounded-lg shadow">
+                        <h3 class="font-semibold text-lg mb-2">Understanding Tawheed</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-3"> A comprehensive guide to the oneness of Allah in Islam. </p>
+                        <a href="#" class="text-green-600 dark:text-green-400 text-sm font-medium hover:underline">Read Article</a>
+                    </div>
+                    <div class="content-card p-6 rounded-lg shadow">
+                        <h3 class="font-semibold text-lg mb-2">The Importance of Salah</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-3"> Why prayer is the pillar of religion and how to perfect it. </p>
+                        <a href="#" class="text-green-600 dark:text-green-400 text-sm font-medium hover:underline">Read Article</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Events -->
+            <div class="events-section p-8 rounded-lg">
+                <h2 class="text-2xl font-bold mb-2">EVENTS</h2>
+                <p class="text-gray-600 dark:text-gray-300 mb-6"> Upcoming Events </p>
+                <div class="space-y-6">
+                    <div class="content-card p-6 rounded-lg shadow">
+                        <h3 class="font-semibold text-lg mb-2">Monthly Tafseer Session</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-2"> 📅 August 25, 2025 | 7:00 PM </p>
+                        <p class="text-gray-600 dark:text-gray-300 mb-3"> Join us for a deep dive into Surah Al-Baqarah with Shaykh Ahmed. </p>
+                        <a href="#" class="inline-block bg-green-600 hover:bg-green-700 text-white text-sm font-medium py-2 px-4 rounded transition"> RSVP Now </a>
+                    </div>
+                    <div class="content-card p-6 rounded-lg shadow">
+                        <h3 class="font-semibold text-lg mb-2">New Muslims Workshop</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-2"> 📅 September 5, 2025 | 6:30 PM </p>
+                        <p class="text-gray-600 dark:text-gray-300 mb-3"> Essential knowledge for new converts to Islam. </p>
+                        <a href="#" class="inline-block bg-green-600 hover:bg-green-700 text-white text-sm font-medium py-2 px-4 rounded transition"> RSVP Now </a>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <!-- Course Card 2 -->
-        <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow hover:shadow-lg transition">
-          <div class="h-48 bg-gray-200 dark:bg-gray-600 rounded mb-4 flex items-center justify-center">
-            <span class="text-gray-500 dark:text-gray-300">Course Image</span>
-          </div>
-          <h3 class="text-xl font-semibold mb-2">Fiqh of Worship</h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-4">
-            Master the rulings of purification, prayer, fasting and more.
-          </p>
-          <a href="#" class="text-green-600 dark:text-green-400 font-medium hover:underline">View Course</a>
-        </div>
-        
-        <!-- Course Card 3 -->
-        <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow hover:shadow-lg transition">
-          <div class="h-48 bg-gray-200 dark:bg-gray-600 rounded mb-4 flex items-center justify-center">
-            <span class="text-gray-500 dark:text-gray-300">Course Image</span>
-          </div>
-          <h3 class="text-xl font-semibold mb-2">Seerah of the Prophet</h3>
-          <p class="text-gray-600 dark:text-gray-300 mb-4">
-            Study the life and teachings of Prophet Muhammad (PBUH).
-          </p>
-          <a href="#" class="text-green-600 dark:text-green-400 font-medium hover:underline">View Course</a>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Knowledge Base & Events -->
-  <section class="py-16 px-4 bg-gray-50 dark:bg-gray-900">
-    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
-      <!-- Knowledge Base -->
-      <div>
-        <h2 class="text-2xl font-bold mb-2">KNOWLEDGE BASE</h2>
-        <p class="text-gray-600 dark:text-gray-300 mb-6">
-          Insights and tutorials from our expert instructors
-        </p>
-        
-        <div class="space-y-6">
-          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
-            <h3 class="font-semibold text-lg mb-2">Understanding Tawheed</h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-3">
-              A comprehensive guide to the oneness of Allah in Islam.
-            </p>
-            <a href="#" class="text-green-600 dark:text-green-400 text-sm font-medium hover:underline">Read Article</a>
-          </div>
-          
-          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
-            <h3 class="font-semibold text-lg mb-2">The Importance of Salah</h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-3">
-              Why prayer is the pillar of religion and how to perfect it.
-            </p>
-            <a href="#" class="text-green-600 dark:text-green-400 text-sm font-medium hover:underline">Read Article</a>
-          </div>
+    <!-- CTA Section -->
+    <section class="cta-section text-white py-16 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4"> Join thousands of students who are advancing their knowledge with our courses. </h2>
+            <a href="#" class="inline-block bg-white hover:bg-gray-100 text-green-600 font-medium py-3 px-8 rounded-full transition mt-6"> Sign-up for free </a>
         </div>
-      </div>
-      
-      <!-- Events -->
-      <div>
-        <h2 class="text-2xl font-bold mb-2">EVENTS</h2>
-        <p class="text-gray-600 dark:text-gray-300 mb-6">
-          Upcoming Events
-        </p>
-        
-        <div class="space-y-6">
-          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
-            <h3 class="font-semibold text-lg mb-2">Monthly Tafseer Session</h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-2">
-              📅 August 25, 2025 | 7:00 PM
-            </p>
-            <p class="text-gray-600 dark:text-gray-300 mb-3">
-              Join us for a deep dive into Surah Al-Baqarah with Shaykh Ahmed.
-            </p>
-            <a href="#" class="inline-block bg-green-600 hover:bg-green-700 text-white text-sm font-medium py-2 px-4 rounded transition">
-              RSVP Now
-            </a>
-          </div>
-          
-          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
-            <h3 class="font-semibold text-lg mb-2">New Muslims Workshop</h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-2">
-              📅 September 5, 2025 | 6:30 PM
-            </p>
-            <p class="text-gray-600 dark:text-gray-300 mb-3">
-              Essential knowledge for new converts to Islam.
-            </p>
-            <a href="#" class="inline-block bg-green-600 hover:bg-green-700 text-white text-sm font-medium py-2 px-4 rounded transition">
-              RSVP Now
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CTA Section -->
-  <section class="py-16 px-4 bg-green-600 text-white">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-2xl md:text-3xl font-bold mb-4">
-        Join thousands of students who are advancing their careers with our courses.
-      </h2>
-      <a href="#" class="inline-block bg-white hover:bg-gray-100 text-green-600 font-medium py-3 px-8 rounded-full transition mt-6">
-        Sign-up for free
-      </a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-gray-800 text-gray-300 py-12 px-4">
-    <div class="max-w-6xl mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-        <div>
-          <h3 class="text-white font-bold mb-4">COURSES</h3>
-          <ul class="space-y-2">
-            <li><a href="#" class="hover:text-white">All Courses</a></li>
-            <li><a href="#" class="hover:text-white">Tech</a></li>
-            <li><a href="#" class="hover:text-white">Business</a></li>
-            <li><a href="#" class="hover:text-white">Art</a></li>
-          </ul>
+    <!-- Footer -->
+    <footer class="footer-section bg-black text-gray-300 py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-white font-bold mb-4">COURSES</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white">All Courses</a></li>
+                        <li><a href="#" class="hover:text-white">Quranic Studies</a></li>
+                        <li><a href="#" class="hover:text-white">Islamic Law</a></li>
+                        <li><a href="#" class="hover:text-white">Arabic Language</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold mb-4">RESOURCES</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white">Blog</a></li>
+                        <li><a href="#" class="hover:text-white">Guides</a></li>
+                        <li><a href="#" class="hover:text-white">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold mb-4">COMPANY</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white">About</a></li>
+                        <li><a href="#" class="hover:text-white">Careers</a></li>
+                        <li><a href="#" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold mb-4">CONNECT</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white">Facebook</a></li>
+                        <li><a href="#" class="hover:text-white">Twitter</a></li>
+                        <li><a href="#" class="hover:text-white">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-black-700 text-center">
+                <p>© 2025 IlmHub. All rights reserved.</p>
+            </div>
         </div>
-        
-        <div>
-          <h3 class="text-white font-bold mb-4">RESOURCES</h3>
-          <ul class="space-y-2">
-            <li><a href="#" class="hover:text-white">Blog</a></li>
-            <li><a href="#" class="hover:text-white">Guides</a></li>
-            <li><a href="#" class="hover:text-white">FAQ</a></li>
-          </ul>
-        </div>
-        
-        <div>
-          <h3 class="text-white font-bold mb-4">COMPANY</h3>
-          <ul class="space-y-2">
-            <li><a href="#" class="hover:text-white">About</a></li>
-            <li><a href="#" class="hover:text-white">Careers</a></li>
-            <li><a href="#" class="hover:text-white">Contact</a></li>
-          </ul>
-        </div>
-        
-        <div>
-          <h3 class="text-white font-bold mb-4">CONNECT</h3>
-          <ul class="space-y-2">
-            <li><a href="#" class="hover:text-white">Facebook</a></li>
-            <li><a href="#" class="hover:text-white">Twitter</a></li>
-            <li><a href="#" class="hover:text-white">LinkedIn</a></li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="pt-8 border-t border-gray-700 text-center">
-        <p>© 2025 IlmHub. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
+    </footer>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
