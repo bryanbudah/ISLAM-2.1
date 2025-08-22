@@ -25,8 +25,8 @@ ALLOWED_HOSTS = [
     'myislamicsite.com',
     'www.myislamicsite.com',
     'yourproject.vercel.app',
-    '.vercel.app'
-    '.now.sh'
+    '.vercel.app',
+    '.now.sh',
 ]
 
 # Installed apps
@@ -129,3 +129,13 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# settings.py
+
+if DEBUG:
+    # Larger limits for development
+    DATA_UPLOAD_MAX_MEMORY_SIZE = 26214400  # 25 MB
+    FILE_UPLOAD_MAX_MEMORY_SIZE = 26214400  # 25 MB
+else:
+    # Smaller, more restrictive limits for production
+    DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760  # 10 MB
+    FILE_UPLOAD_MAX_MEMORY_SIZE = 10485760  # 10 MB

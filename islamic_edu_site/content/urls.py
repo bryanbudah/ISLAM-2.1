@@ -1,19 +1,31 @@
-# urls.py
 from django.urls import path
 from . import views
 
-urlpatterns = [
-   path('', views.home, name='home'),
-    # Courses
-    path('courses/', views.CourseListView.as_view(), name='course-list'),
-    path('courses/<slug:slug>/', views.CourseDetailView.as_view(), name='course-detail'),
 
+
+urlpatterns = [
+    # Home page - root URL
+    path('', views.home, name='home'),
+    
     # Articles
     path('articles/', views.ArticleListView.as_view(), name='article_list'),
-    path('articles/<int:pk>/', views.ArticleDetailView.as_view(), name='article_detail'),
-    path('articles/<slug:slug>/', views.ArticleDetailView.as_view(), name='article-detail'),
-
+    path('articles/<slug:slug>/', views.ArticleDetailView.as_view(), name='article_detail_slug'),
+    
+    # Courses
+    path('courses/', views.CourseListView.as_view(), name='course_list'),
+    path('courses/<slug:slug>/', views.CourseDetailView.as_view(), name='course_detail'),
+    
     # Events
-    path('events/', views.EventListView.as_view(), name='event-list'),
-    path('events/<slug:slug>/', views.EventDetailView.as_view(), name='event-detail'),
+    path('events/', views.EventListView.as_view(), name='event_list'),
+    path('events/<slug:slug>/', views.EventDetailView.as_view(), name='event_detail'),
+    
+    # Categories
+    path('categories/<int:pk>/', views.CategoryDetailView.as_view(), name='category_detail'),
+    path('categories/<slug:slug>/', views.CategoryDetailView.as_view(), name='category_detail_slug'),
+    
+    # Quran Quotes
+    path('quran-quotes/', views.QuranQuoteListView.as_view(), name='quran_quote_list'),
+    
+    # Search
+    path('search/', views.search, name='search'),
 ]

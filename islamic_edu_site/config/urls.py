@@ -18,12 +18,14 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from content.views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('core.urls')),
+     path('', home, name='home'),
+    path('', include('content.urls')),
     path('users/', include('users.urls')),  # All user-related URLs
-    path('content/', include('content.urls')),
+    
 ]
 
 if settings.DEBUG:

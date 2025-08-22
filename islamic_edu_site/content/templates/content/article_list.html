@@ -29,20 +29,36 @@
         <p class="text-gray-600 mt-2">Articles written by scholars, teachers, and learners of Islam</p>
     </section>
 
-    <!-- Articles Grid -->
-    <main class="max-w-6xl mx-auto px-4 py-10 grid gap-6 md:grid-cols-3">
-        {% for article in articles %}
-        <div class="bg-white shadow rounded-xl overflow-hidden hover:shadow-lg transition">
-            <img src="{{ article.image_url }}" alt="Article image" class="w-full h-48 object-cover">
-            <div class="p-4">
-                <h3 class="text-xl font-semibold mb-2">{{ article.title }}</h3>
-                <p class="text-gray-600 text-sm">{{ article.summary|truncatewords:20 }}</p>
-                <a href="{% url 'article-detail' article.id %}" class="text-green-700 font-medium mt-3 inline-block">Read More →</a>
-            </div>
+    <!-- Articles Grid with Background -->
+    <main class="relative py-16">
+        <!-- Fixed Background Image -->
+        <div class="absolute inset-0 bg-fixed bg-center bg-cover"
+             style="background-image: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');">
         </div>
-        {% empty %}
-        <p>No articles available at the moment.</p>
-        {% endfor %}
+
+        <!-- Golden Islamic Pattern Overlay -->
+        <div class="absolute inset-0 opacity-20 mix-blend-multiply bg-repeat"
+             style="background-image: url('https://www.transparenttextures.com/patterns/arabesque.png'); filter: sepia(1) hue-rotate(10deg) saturate(5);">
+        </div>
+
+        <!-- Grid Content -->
+        <div class="relative max-w-6xl mx-auto px-4 grid gap-6 md:grid-cols-3">
+            {% for article in articles %}
+            <div class="bg-white shadow rounded-xl overflow-hidden hover:shadow-lg transition">
+                <img src="{{ article.image_url }}" alt="Article image" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-xl font-semibold mb-2">{{ article.title }}</h3>
+                    <p class="text-gray-600 text-sm">{{ article.summary|truncatewords:20 }}</p>
+                    <a href="{% url 'article_detail_slug' article.slug %}" 
+                       class="text-green-700 font-medium mt-3 inline-block hover:text-green-900">
+                       Read More →
+                    </a>
+                </div>
+            </div>
+            {% empty %}
+            <p class="col-span-full text-center text-gray-700">No articles available at the moment.</p>
+            {% endfor %}
+        </div>
     </main>
 
     <!-- Footer -->
@@ -52,3 +68,4 @@
 
 </body>
 </html>
+

@@ -14,8 +14,9 @@ def home(request):
         'upcoming_events': upcoming_events,
         'featured_courses': featured_courses,
         'daily_quote': daily_quote,
+        'events_count': upcoming_events.count(),
     }
-    return render(request, 'content/home.html', context)
+    return render(request, 'core/home.html', context)
 
 # Article Views
 class ArticleListView(ListView):
@@ -100,4 +101,4 @@ def search(request):
         'query': query,
         'results': results,
     }
-    return render(request, 'content/search.html', context)
+    return render(request, 'core/home.html', context)

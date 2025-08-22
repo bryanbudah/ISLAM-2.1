@@ -8,6 +8,6 @@ urlpatterns = [
 ]
 path('courses/', views.courses, name='courses'),
 
-path('articles/', views.articles, name='article-list'),
-path('events/', views.events, name='event-list'),
-path('courses/', views.course_list, name='course-list'),
+path('articles/', views.articles, name='article_list'),
+path('events/', views.events, name='event_list'),
+path('courses/', views.course_list, name='course_list'),

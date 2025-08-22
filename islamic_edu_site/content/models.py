@@ -13,7 +13,8 @@ class ContentBase(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(unique=True, blank=True)
     description = models.TextField()
-    content = models.TextField()
+    content = models.TextField(blank=True, null=True)
+
     image = models.ImageField(upload_to='content_images/', blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -33,13 +34,19 @@ class ContentBase(models.Model):
 
 class Course(ContentBase):
     video_url = models.URLField(blank=True, null=True)
+    video = models.FileField(upload_to="articles/videos/", blank=True, null=True)
 
 class Article(ContentBase):
     author = models.CharField(max_length=255)
+    video = models.FileField(upload_to="articles/videos/", blank=True, null=True)
+    video_url = models.URLField(blank=True, null=True)
 
 class Event(ContentBase):
     event_date = models.DateField()
     location = models.CharField(max_length=255)
+    video = models.FileField(upload_to="articles/videos/", blank=True, null=True)
+    video_url = models.URLField(blank=True, null=True)
+    image_url = models.URLField(blank=True, null=True)
 
 class QuranQuote(models.Model):
     verse = models.TextField()
@@ -75,3 +82,4 @@ class SavedContent(models.Model):
 
     def __str__(self):
         return f"{self.user.username} saved {self.content_type} ({self.object_id})"
+

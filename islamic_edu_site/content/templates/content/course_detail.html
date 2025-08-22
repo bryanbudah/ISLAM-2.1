@@ -1,36 +1,177 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="course-detail">
-    <h1>{{ course.title }}</h1>
-    
-    <div class="meta">
-        <span>Category: {{ course.category.name }}</span> |
-        <span>Published: {{ course.created_at|date:"F j, Y" }}</span>
+<div class="islamic-layout">
+    <!-- Decorative Islamic header -->
+    <div class="islamic-header">
+        <div class="arabic-pattern"></div>
+        <h1 class="islamic-title">{{ course.title }}</h1>
+        <div class="arabic-pattern"></div>
     </div>
-    
-    {% if course.image %}
-    <img src="{{ course.image.url }}" alt="{{ course.title }}" class="course-image">
-    {% endif %}
-    
-    <div class="description">
-        <h2>About This Course</h2>
-        {{ course.description|linebreaks }}
-    </div>
-    
-    <div class="content">
-        {{ course.content|linebreaks }}
-    </div>
-    
-    {% if course.video_url %}
-    <div class="video-container">
-        <iframe src="{{ course.video_url }}" allowfullscreen></iframe>
-    </div>
-    {% endif %}
-    
-    <!-- Enrollment button or progress tracker -->
-    <div class="enrollment-section">
-        <button class="enroll-btn">Enroll in Course</button>
+
+    <div class="course-detail-container">
+        <!-- Meta information -->
+        <div class="islamic-meta">
+            <div class="meta-item">
+                <i class="fas fa-book-open"></i>
+                <span>Category: {{ course.category.name }}</span>
+            </div>
+            <div class="meta-item">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Published: {{ course.created_at|date:"F j, Y" }}</span>
+            </div>
+            <div class="meta-item">
+                <i class="fas fa-clock"></i>
+                <span>Estimated duration: 10 hours</span>
+            </div>
+        </div>
+
+        <!-- Course image -->
+        {% if course.image %}
+        <div class="islamic-image-frame">
+            <img src="{{ course.image.url }}" alt="{{ course.title }}" class="course-image">
+            <div class="islamic-frame-decoration"></div>
+        </div>
+        {% endif %}
+
+        <!-- About Section -->
+        <div class="islamic-content-section">
+            <div class="section-header">
+                <div class="arabic-icon">📖</div>
+                <h2>About This Course</h2>
+                <div class="arabic-icon">📖</div>
+            </div>
+            <div class="description islamic-text">
+                {{ course.description|linebreaks }}
+            </div>
+        </div>
+
+        <!-- Course Content Section -->
+        <div class="islamic-content-section">
+            <div class="section-header">
+                <div class="arabic-icon">✍️</div>
+                <h2>Course Content</h2>
+                <div class="arabic-icon">✍️</div>
+            </div>
+            <div class="content islamic-text">
+                {{ course.content|linebreaks }}
+            </div>
+        </div>
+
+        <!-- Video Section -->
+        {% if course.video %}
+        <div class="islamic-content-section">
+            <div class="section-header">
+                <div class="arabic-icon">🎬</div>
+                <h2>Preview Video</h2>
+                <div class="arabic-icon">🎬</div>
+            </div>
+            <video controls class="islamic-video-container">
+                <source src="{{ course.video.url }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-decoration"></div>
+        </div>
+        {% elif course.video_url %}
+        <div class="islamic-content-section">
+            <div class="section-header">
+                <div class="arabic-icon">🎬</div>
+                <h2>Preview Video</h2>
+                <div class="arabic-icon">🎬</div>
+            </div>
+            <div class="islamic-video-container" style="position:relative; padding-top:56.25%;">
+                <iframe src="{{ course.video_url }}" allowfullscreen
+                        style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;"></iframe>
+            </div>
+            <div class="video-decoration"></div>
+        </div>
+        {% endif %}
+
+        <!-- Enrollment Section -->
+        <div class="enrollment-section islamic-enrollment">
+            <div class="section-header">
+                <div class="arabic-icon">🎓</div>
+                <h2>Enroll in This Course</h2>
+                <div class="arabic-icon">🎓</div>
+            </div>
+            <p class="enrollment-text">"Seeking knowledge is obligatory upon every Muslim" - Prophet Muhammad (peace be upon him)</p>
+            <button class="enroll-btn islamic-button">
+                <i class="fas fa-graduation-cap"></i>
+                Enroll Now
+            </button>
+            <div class="enrollment-benefits">
+                <h3>What you'll receive:</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> Full access to all course materials</li>
+                    <li><i class="fas fa-check-circle"></i> Certificate of completion</li>
+                    <li><i class="fas fa-check-circle"></i> Direct access to instructor Q&A</li>
+                    <li><i class="fas fa-check-circle"></i> Downloadable resources</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Related Courses -->
+        <div class="related-courses">
+            <div class="section-header">
+                <div class="arabic-icon">📚</div>
+                <h2>You Might Also Like</h2>
+                <div class="arabic-icon">📚</div>
+            </div>
+            <div class="related-courses-grid">
+                <div class="related-course-item">
+                    <h4>Quranic Arabic for Beginners</h4>
+                    <p>Learn the language of the Quran</p>
+                </div>
+                <div class="related-course-item">
+                    <h4>Seerah of Prophet Muhammad</h4>
+                    <p>Study the life of the Final Messenger</p>
+                </div>
+                <div class="related-course-item">
+                    <h4>Fiqh of Worship</h4>
+                    <p>Understanding Islamic jurisprudence</p>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
+
+<!-- Styles -->
+<style>
+.islamic-layout {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333; line-height:1.6; max-width:1200px; margin:0 auto; padding:20px;
+}
+.islamic-header { display:flex; align-items:center; justify-content:center; margin-bottom:30px; position:relative;}
+.arabic-pattern { flex:1; height:2px; background:linear-gradient(90deg, transparent, #8e7037, transparent); margin:0 15px;}
+.arabic-pattern::before, .arabic-pattern::after { content:"۞"; color:#8e7037; font-size:24px; position:relative; top:-12px;}
+.islamic-title { text-align:center; color:#2a5c3b; font-size:2.5rem; font-weight:bold; margin:0 15px; text-shadow:1px 1px 2px rgba(0,0,0,0.1);}
+.islamic-meta { display:flex; justify-content:center; flex-wrap:wrap; gap:20px; margin-bottom:30px; padding:15px; background-color:#f8f5e6; border-radius:5px; box-shadow:0 2px 5px rgba(0,0,0,0.05);}
+.meta-item { display:flex; align-items:center; gap:8px; color:#5a4b30;}
+.meta-item i { color:#8e7037;}
+.islamic-image-frame { position:relative; margin:30px auto; max-width:800px;}
+.course-image { width:100%; border-radius:5px; box-shadow:0 5px 15px rgba(0,0,0,0.1);}
+.islamic-video-container { position:relative; width:100%; max-width:800px; margin:20px auto; border-radius:5px;}
+.islamic-video-container video, .islamic-video-container iframe { position:absolute; top:0; left:0; width:100%; height:100%; border-radius:5px;}
+.islamic-content-section { margin:40px 0; padding:20px; background:#fff; border-radius:5px; box-shadow:0 2px 10px rgba(0,0,0,0.05); border-left:4px solid #8e7037;}
+.section-header { display:flex; align-items:center; justify-content:center; margin-bottom:25px;}
+.arabic-icon { margin:0 15px; font-size:1.5rem; color:#8e7037;}
+.islamic-text { font-size:1.1rem; color:#333; text-align:justify;}
+.enrollment-section { text-align:center; background-color:#f5f2e6; border-left:4px solid #2a5c3b;}
+.enrollment-text { font-style:italic; color:#5a4b30; margin:15px 0;}
+.islamic-button { background:linear-gradient(to bottom, #2a5c3b, #1e3f2a); color:white; border:none; padding:12px 30px; font-size:1.1rem; border-radius:30px; cursor:pointer; margin:15px 0;}
+.enrollment-benefits { margin-top:25px; text-align:left; max-width:500px; margin-left:auto; margin-right:auto;}
+.enrollment-benefits h3 { color:#2a5c3b; border-bottom:1px solid #e0d9c0; padding-bottom:10px;}
+.enrollment-benefits ul { list-style:none; padding:0;}
+.enrollment-benefits li { margin:10px 0; display:flex; align-items:center;}
+.enrollment-benefits i { color:#2a5c3b; margin-right:10px;}
+.related-courses-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(300px,1fr)); gap:20px; margin-top:20px;}
+.related-course-item { padding:15px; background:#f8f5e6; border-radius:5px; border-left:3px solid #8e7037; transition:transform 0.3s;}
+.related-course-item:hover { transform:translateY(-5px); box-shadow:0 5px 15px rgba(0,0,0,0.1);}
+.related-course-item h4 { color:#2a5c3b; margin-top:0;}
+@media(max-width:768px){ .islamic-title{ font-size:2rem;} .islamic-meta{ flex-direction:column; align-items:center; gap:10px;} .section-header{ flex-direction:column; gap:10px;} .arabic-icon{ margin:5px 0;} .related-courses-grid{ grid-template-columns:1fr; } }
+</style>
+
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 {% endblock %}
+

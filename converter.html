@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Unsplash to CSS URL Converter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 600px;
+      width: 100%;
+    }
+    input, button, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+    button {
+      background: #111;
+      color: white;
+      cursor: pointer;
+    }
+    textarea {
+      height: 80px;
+      resize: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Unsplash → CSS url() Converter</h2>
+    <input type="text" id="unsplashUrl" placeholder="Paste Unsplash photo link here...">
+    <button onclick="convertUrl()">Convert</button>
+    <textarea id="result" readonly placeholder="Your CSS url() will appear here..."></textarea>
+  </div>
+
+  <script>
+    function convertUrl() {
+      const input = document.getElementById('unsplashUrl').value.trim();
+      if (!input) return alert("Please paste an Unsplash link!");
+
+      // Extract photo ID
+      const id = input.split("/").pop().split("?")[0];
+
+      // Build CSS URL
+      const cssUrl = `url('https://images.unsplash.com/photo-${id}?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')`;
+
+      document.getElementById('result').value = cssUrl;
+    }
+  </script>
+</body>
+</html>
