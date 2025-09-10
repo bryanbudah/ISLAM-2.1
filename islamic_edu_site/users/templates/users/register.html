@@ -2,8 +2,8 @@
 {% load static %}
 
 {% block content %}
-<div class="min-h-screen flex items-center justify-center bg-gray-50 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI2ZmZiI+PC9yZWN0PjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0iI2UwZTBlMCI+PC9yZWN0PjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSI+PC9yZWN0Pjwvc3ZnPg==')]">
-  <div class="max-w-md mx-auto p-8 bg-white bg-opacity-90 rounded-lg shadow-lg mt-10 border-2 border-gold-500">
+<div class="min-h-screen flex items-center justify-center bg-gray-50 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjMGE1ZTIiLz48cGF0aCBkPSJNMjAgMGwyMCAyMC0yMCAyMC0yMC0yMHoiIGZpbGw9IiNkNGFmMzciIGZpbGwtb3BhY2l0eT0iMC41Ii8+PC9zdmc+')]">
+  <div class="max-w-md mx-auto p-8 bg-white bg-opacity-90 rounded-lg shadow-lg mt-10 border-2 border-gold-500 card-islamic">
     <!-- Islamic decorative elements -->
     <div class="text-center mb-6">
       <h1 class="text-3xl font-bold text-islamic-green mb-2">IlmHub</h1>
@@ -28,7 +28,7 @@
         </div>
       {% endfor %}
 
-      <button type="submit" class="w-full bg-islamic-green text-white py-3 px-4 rounded-lg hover:bg-islamic-green-dark transition duration-300 shadow-md flex items-center justify-center">
+      <button type="submit" class="w-full bg-islamic-green text-white py-3 px-4 rounded-lg hover:bg-islamic-green-dark transition duration-300 shadow-md flex items-center justify-center shimmer-btn">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
         </svg>
@@ -42,22 +42,96 @@
     </p>
 
     <!-- Islamic decorative footer -->
-    <div class="mt-8 text-center text-xs text-gray-500">
+    <div class="mt-8 text-center text-xs text-gray-500 quran-verse">
       <p>"And say: My Lord, increase me in knowledge" (Quran 20:114)</p>
     </div>
   </div>
 </div>
 
 <style>
-  /* Custom Islamic color palette */
+  /* Islamic color palette */
   .bg-islamic-green { background-color: #0a5e2a; }
   .hover\:bg-islamic-green-dark:hover { background-color: #084a22; }
   .text-islamic-green { color: #0a5e2a; }
   .border-gold-500 { border-color: #d4af37; }
   .text-gold-600 { color: #d4af37; }
 
-  /* Form input styling */
-  
-  
+  /* Inputs styling */
+  input, select, textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d4af37;
+    border-radius: 0.5rem;
+    outline: none;
+    transition: all 0.3s ease;
+    background-color: #fdfdfc;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: #0a5e2a;
+    box-shadow: 0 0 6px rgba(10, 94, 42, 0.4);
+  }
+
+  /* Decorative Islamic touch */
+  .card-islamic {
+    background: linear-gradient(to bottom right, #ffffff, #f9f9f6);
+    border: 2px solid #d4af37;
+    border-radius: 1rem;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  .card-islamic::before {
+    content: "";
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(212,175,55,0.25) 20%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+    .max-w-md { width: 90%; padding: 1.5rem; }
+  }
+
+  /* Decorative footer */
+  .quran-verse {
+    border-top: 1px solid #e6e6e6;
+    padding-top: 0.5rem;
+    margin-top: 1.5rem;
+    font-style: italic;
+    color: #555;
+  }
+
+  /* Shimmer animation for Register button */
+  .shimmer-btn {
+    position: relative;
+    overflow: hidden;
+  }
+  .shimmer-btn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    transform: skewX(-20deg);
+    animation: shimmer 3s infinite;
+  }
+  @keyframes shimmer {
+    0% { left: -75%; }
+    100% { left: 125%; }
+  }
 </style>
 {% endblock %}
+

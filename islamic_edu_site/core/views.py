@@ -49,3 +49,10 @@ def courses(request):
     return render(request, 'core/courses.html')
 def courses_view(request):
     return render(request, 'core/courses.html')
+from django.shortcuts import render
+
+def about(request):
+    return render(request, 'core/about.html')
+
+def faq(request):
+    return render(request, "core/faq.html")
