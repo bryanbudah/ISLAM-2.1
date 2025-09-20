@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+
 {% load static %}
 
 {% block content %}
@@ -30,10 +30,24 @@
     <!-- Featured image -->
     {% if article.image %}
     <div class="islamic-image-frame">
-        <img src="{{ article.image.url }}" alt="{{ article.title }}" class="article-image">
-        <div class="islamic-frame-decoration"></div>
+  
+<div class="islamic-image-frame">
+    <div class="w-full aspect-video overflow-hidden rounded-lg shadow">
+        <img src="{{ article.image.url }}" alt="{{ article.title }}" 
+             class="w-full h-full object-cover">
     </div>
-    {% endif %}
+    <div class="islamic-frame-decoration"></div>
+</div>
+{% else %}
+<div class="islamic-image-frame">
+    <div class="w-full aspect-video overflow-hidden rounded-lg shadow">
+        <img src="{% static 'images/placeholder.jpg' %}" alt="No image available" 
+             class="w-full h-full object-cover">
+    </div>
+    <div class="islamic-frame-decoration"></div>
+</div>
+{% endif %}
+
 
     <!-- Video Section -->
     {% if article.video or article.embed_url %}
@@ -72,25 +86,20 @@
     </div>
 
     <!-- Related Articles -->
-    <div class="related-articles islamic-content-section">
-        <div class="section-header">
-            <div class="arabic-icon">🕌</div>
-            <h2>More Articles</h2>
-            <div class="arabic-icon">🕌</div>
-        </div>
-        <div class="related-articles-grid">
-            {% for related in related_articles %}
-                <div class="related-article-item">
-                    {% if related.image %}
-                    <img src="{{ related.image.url }}" alt="{{ related.title }}" class="related-article-image">
-                    {% endif %}
-                    <h4>
-                        <a href="{{ related.get_absolute_url }}" class="related-link">
-                            {{ related.title }}
-                        </a>
-                    </h4>
-                </div>
-            {% endfor %}
+    {% if related.image %}
+<div class="w-full aspect-video overflow-hidden rounded-md">
+    <img src="{{ related.image.url }}" alt="{{ related.title }}" 
+         class="w-full h-full object-cover">
+</div>
+{% else %}
+<div class="w-full aspect-video overflow-hidden rounded-md">
+  <a href="{% url 'article_list' %}">
+        <img src="{% static 'images/placeholder.jpg' %}" alt="Go back" 
+             class="w-full h-full object-cover">
+    </a>
+</div>
+{% endif %}
+
         </div>
     </div>
 

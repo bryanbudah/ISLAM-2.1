@@ -1,4 +1,5 @@
 from django.urls import path
+from core import views as core_views
 from . import views
 
 
@@ -28,4 +29,7 @@ urlpatterns = [
     
     # Search
     path('search/', views.search, name='search'),
+    path("faq/", core_views.faq, name="faq"),
+    path("about/", core_views.about, name="about"),
+    path("contact/", core_views.contact, name="contact"),
 ]

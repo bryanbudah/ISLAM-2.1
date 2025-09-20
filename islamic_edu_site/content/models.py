@@ -19,7 +19,7 @@ class ContentBase(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    published = models.BooleanField(default=False)
+    published = models.BooleanField(default=True)
 
     class Meta:
         abstract = True
@@ -38,6 +38,7 @@ class Course(ContentBase):
 
 class Article(ContentBase):
     author = models.CharField(max_length=255)
+    image = models.ImageField(upload_to="articles/images/", blank=True, null=True)  # ✅ thumbnail
     video = models.FileField(upload_to="articles/videos/", blank=True, null=True)
     video_url = models.URLField(blank=True, null=True)
 

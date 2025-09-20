@@ -9,9 +9,7 @@ urlpatterns = [
         template_name='users/login.html',
         redirect_authenticated_user=True  # Added for better UX
     ), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(
-        template_name='users/logout.html'
-    ), name='logout'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
 
     # Profile
     path('profile/', views.profile, name='profile'),

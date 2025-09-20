@@ -22,10 +22,10 @@ from content.views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-     path('', home, name='home'),
-      path("", include("core.urls")), 
-    path('', include('content.urls')),
-    path('users/', include('users.urls')),  # All user-related URLs
+     path("", home, name='home'), 
+     path("", include("content.urls")),
+
+    path("users/", include("users.urls")),  # All user-related URLs
     
 ]
 

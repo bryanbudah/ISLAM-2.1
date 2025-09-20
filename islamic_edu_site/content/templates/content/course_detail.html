@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+
 
 {% block content %}
 <div class="islamic-layout">
@@ -27,11 +27,13 @@
         </div>
 
         <!-- Course image -->
-        {% if course.image %}
-        <div class="islamic-image-frame">
+     {% if course.image %}
+   
+<div class="islamic-image-frame">
             <img src="{{ course.image.url }}" alt="{{ course.title }}" class="course-image">
             <div class="islamic-frame-decoration"></div>
         </div>
+        
         {% endif %}
 
         <!-- About Section -->
@@ -87,7 +89,7 @@
         </div>
         {% endif %}
 
-        <!-- Enrollment Section -->
+        <!-- Enrollment Section
         <div class="enrollment-section islamic-enrollment">
             <div class="section-header">
                 <div class="arabic-icon">🎓</div>
@@ -95,10 +97,10 @@
                 <div class="arabic-icon">🎓</div>
             </div>
             <p class="enrollment-text">"Seeking knowledge is obligatory upon every Muslim" - Prophet Muhammad (peace be upon him)</p>
-            <button class="enroll-btn islamic-button">
+            <a href ="{% url 'register' %}"><button class="enroll-btn islamic-button">
                 <i class="fas fa-graduation-cap"></i>
                 Enroll Now
-            </button>
+            </button></a>
             <div class="enrollment-benefits">
                 <h3>What you'll receive:</h3>
                 <ul>
@@ -108,13 +110,13 @@
                     <li><i class="fas fa-check-circle"></i> Downloadable resources</li>
                 </ul>
             </div>
-        </div>
+        </div>-->
 
         <!-- Related Courses -->
         <div class="related-courses">
             <div class="section-header">
                 <div class="arabic-icon">📚</div>
-                <h2>You Might Also Like</h2>
+                <h2>You Might Also Like the below courses which can be found on the main courses page, They are:</h2>
                 <div class="arabic-icon">📚</div>
             </div>
             <div class="related-courses-grid">
