@@ -6,7 +6,7 @@ services:
     buildCommand: |
       pip install -r requirements.txt
       python manage.py collectstatic --noinput
-      startCommand: >gunicorn islamic_edu_site.config.wsgi:application --bind 0.0.0.0:$PORT--workers 3
+    startCommand: gunicorn islamic_edu_site.config.wsgi:application --bind 0.0.0.0:$PORT --workers 3
 
     envVars:
       - key: DJANGO_SETTINGS_MODULE
@@ -19,4 +19,3 @@ services:
     env: static
     buildCommand: ""
     staticPublishPath: staticfiles
-
