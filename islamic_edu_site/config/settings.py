@@ -67,6 +67,8 @@ INSTALLED_APPS = [
     'users',
     'content',
     'core.apps.CoreConfig',
+     'cloudinary',
+    'cloudinary_storage',
 ]
 
 # Custom user model
