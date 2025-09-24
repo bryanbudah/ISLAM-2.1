@@ -7,15 +7,11 @@ services:
       pip install -r requirements.txt
       python manage.py collectstatic --noinput
     startCommand: gunicorn islamic_edu_site.config.wsgi:application --bind 0.0.0.0:$PORT --workers 3
-
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: islamic_edu_site.config.settings
       - key: PYTHON_VERSION
         value: 3.13.5
 
-  - type: static
-    name: islamic-edu-site-static
-    env: static
-    buildCommand: ""
-    staticPublishPath: staticfiles
+
+  
