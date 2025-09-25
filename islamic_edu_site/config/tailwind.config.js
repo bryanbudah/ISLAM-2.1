@@ -1,31 +1,31 @@
 module.exports = {
-  darkMode: 'class', // Enables class-based dark mode
+  darkMode: 'class',
   content: [
     './templates/**/*.html',
     './theme/templates/**/*.html',
     './users/templates/**/*.html',
     './core/templates/**/*.html',
     './content/templates/**/*.html',
-    './**/forms.py', // For Tailwind forms plugin
-     './static/src/**/*.js',
+    './**/forms.py',
+    './static/src/**/*.js'
   ],
   theme: {
     extend: {
       colors: {
         primary: {
-          light: '#38a169', // Green-600
-          DEFAULT: '#2f855a', // Green-700
-          dark: '#276749', // Green-800
+          light: '#38a169',
+          DEFAULT: '#2f855a',
+          dark: '#276749',
         },
         secondary: {
-          light: '#f6ad55', // Amber-400
-          DEFAULT: '#ed8936', // Amber-500
-          dark: '#dd6b20', // Amber-600
+          light: '#f6ad55',
+          DEFAULT: '#ed8936',
+          dark: '#dd6b20',
         },
         islamic: {
           gold: '#d4af37',
-          green: '#228B22', // Islamic green
-          navy: '#000080', // Islamic navy
+          green: '#228B22',
+          navy: '#000080',
         },
       },
       fontFamily: {
@@ -61,10 +61,9 @@ module.exports = {
     },
   },
   plugins: [
-    require('@tailwindcss/forms'), // For beautiful form styling
-    require('@tailwindcss/typography'), // For prose content
-    require('@tailwindcss/aspect-ratio'), // For media handling
-    require('@tailwindcss/line-clamp'), // For text truncation
-  ],
-  
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/line-clamp'),
+  ]
 }
