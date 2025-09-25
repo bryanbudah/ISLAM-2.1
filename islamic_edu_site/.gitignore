@@ -44,3 +44,5 @@ logs/
 # Temporary files
 *.tmp
 *.temp
+theme/package.json
+theme/node_modules/
