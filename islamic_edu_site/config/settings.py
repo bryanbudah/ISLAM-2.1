@@ -56,14 +56,14 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-
+    
+        
     # Third-party
-    'tailwind',
+    #'tailwind',
     'django_extensions',
 
     # Local apps
-    'theme',
+    'theme.apps.ThemeConfig',
     'users',
     'content',
     'core.apps.CoreConfig',
@@ -79,7 +79,7 @@ CLOUDINARY_STORAGE = {
 AUTH_USER_MODEL = 'users.CustomUser'
 
 # Tailwind configuration
-TAILWIND_APP_NAME = 'theme'
+#TAILWIND_APP_NAME = 'theme'
 
 # Authentication settings
 LOGIN_URL = 'login'
