@@ -1,7 +1,46 @@
-media/
+# Python
 venv/
-*.sqlite3
 __pycache__/
-*.py[cod]
+*.pyc
+.python-version
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
 .env
+.env.local
+
+# Database
+*.db
+*.sqlite3
+db.sqlite3
+
+# Static files
+staticfiles/
+mediafiles/
+
+# Build directories
+build/
+dist/
+
+# IDE
 .vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
