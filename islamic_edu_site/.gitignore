@@ -45,4 +45,7 @@ logs/
 *.tmp
 *.temp
 theme/package.json
-theme/node_modules/
+theme/node_modules/node_modules/
+venv/
+theme/static_src/package.json
+theme/package.json theme/package.json
