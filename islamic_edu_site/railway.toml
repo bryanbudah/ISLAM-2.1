@@ -1,20 +1,33 @@
+# Create/overwrite railway.toml
+cat > railway.toml << 'EOF'
 [build]
 builder = "nixpacks"
 
-# Explicitly set this as a Python project
 [build.runtime]
 name = "python"
 version = "3.11"
 
-# Build commands - explicitly skip Node.js stuff
 [build.commands]
+prebuild = "find . -name 'package.json' -not -path './package.json' -delete && rm -rf node_modules/ venv/"
 build = "pip install -r requirements.txt"
 
-# Deploy commands
 [deploy]
 startCommand = "python manage.py migrate && gunicorn config.wsgi:application"
+healthcheckPath = "/"
+healthcheckTimeout = 300
 
-# Environment variables
+[service]
+httpPort = 8000
+minInstances = 1
+maxInstances = 1
+
 [env]
+DEBUG = "False"
+SECRET_KEY = "sx-ykKqBFVvEj64JdsaeVBY0Uuk66JchIDjf-BkMcGyh66syFOIr3W93-7cz5rMrhjY"
+ALLOWED_HOSTS = ".railway.app,localhost,127.0.0.1"
 DISABLE_COLLECTSTATIC = "1"
 PYTHON_VERSION = "3.11.0"
+
+[dependencies]
+postgresql = "*"
+EOF
