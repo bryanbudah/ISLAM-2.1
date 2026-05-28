@@ -39,7 +39,7 @@ ALLOWED_HOSTS = env.list(
         "127.0.0.1",
         "localhost",
         ".onrender.com",
-        "127.0.0.1,localhost,islamic-edu-site.onrender.com",
+       
     ]
 )
 
